@@ -5,9 +5,23 @@ class Solution(object):
         :type target: int
         :rtype: int
         """
-        a=0
-        for i in range(len(nums)):
-            if target>nums[i]:
-                a+=1
-        return a
+        # Solution :
+        # a=0
+        # for i in range(len(nums)):
+        #     if target>nums[i]:
+        #         a+=1
+        # return a
+
+        # By Binary Search
+        if target in nums:
+            return nums.index(target)
+        else:
+            left,right=0,len(nums)-1
+            while left<=right:
+                mid=(left+right)//2
+                if nums[mid]<target:
+                    left=mid+1
+                else:
+                    right=mid-1
+            return left
         
