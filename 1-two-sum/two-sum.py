@@ -5,18 +5,17 @@ class Solution(object):
         :type target: int
         :rtype: List[int]
         """
-        for i in range(len(nums)-1):
-            for j in range(i+1,len(nums)):
-                if nums[i]+nums[j]==target:
-                    return [i,j]
+        #Brute Force
+        # for i in range(0,len(nums)-1):
+        #     for j in range(i+1,len(nums)):
+        #         if nums[i]+nums[j]==target:
+        #             return [i,j]
 
+        #Hashtable
 
-        #Optimized solution
-
-        # hash_map = {} ---------------- Hashmap used
-        # for i, num in enumerate(nums):
-        #     complement = target - num
-        #     if complement in hash_map:
-        #         return [hash_map[complement], i]
-        #     hash_map[num] = i        
-        # return []
+        dict={}
+        for i,num in enumerate(nums):
+            difference=target-num
+            if difference in dict:
+                return [dict[difference],i]
+            dict[num]=i
