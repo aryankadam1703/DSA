@@ -4,10 +4,16 @@ class Solution(object):
         :type strs: List[str]
         :rtype: str
         """
-        c = min(strs, key=len)
-        for i in range(len(strs)):
-            for j in range(len(c)):
-                if c[j] != strs[i][j]:
-                    c = c[:j]
-                    break
-        return c
+        output=""
+        s=min(strs,key=len)
+        for i in range(len(s)):
+            count=0
+            for j in strs:
+                if s[i]==j[i]:
+                    count+=1
+            if count==len(strs):
+                output+=s[i]
+            else:
+                break
+        return output
+        
