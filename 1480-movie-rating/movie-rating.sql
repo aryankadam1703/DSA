@@ -1,6 +1,6 @@
 # Write your MySQL query statement below
 
-with highest_user_rating as(
+with highest_user_rated as(
     select u.name from Movierating m
     left join users u
     on m.user_id = u.user_id
@@ -8,13 +8,8 @@ with highest_user_rating as(
     order by count(m.user_id) desc, u.name asc
     limit 1
 ),
--- user_rated_more as(
---     select name from highest_user_rating 
---     order by Total_count desc, name asc
---     limit 1
--- ),
 
-highest_movie_rated as(
+highest_avg_rated as(
     select m1.title from movies m1
     right join movierating m
     on m1.movie_id = m.movie_id
@@ -23,15 +18,11 @@ highest_movie_rated as(
     order by avg(m.rating) desc,title asc
     limit 1
 ),
--- max_avg_movie as(
---     select title from highest_movie_rated
---     order by avg_rating desc,title asc
---     limit 1
--- ),
+
 output as(
-    select * from highest_user_rating
+    select * from highest_user_rated
     union all
-    select * from highest_movie_rated
+    select * from highest_avg_rated
 )
 select name as results from output
 
