@@ -15,21 +15,23 @@ with highest_user_rating as(
 -- ),
 
 highest_movie_rated as(
-    select m1.title,avg(m.rating) as avg_rating from movies m1
+    select m1.title from movies m1
     right join movierating m
     on m1.movie_id = m.movie_id
     where m.created_at >='2020-02-01' and m.created_at < '2020-03-01'
     group by m1.title
-),
-max_avg_movie as(
-    select title from highest_movie_rated
-    order by avg_rating desc,title asc
+    order by avg(m.rating) desc,title asc
     limit 1
 ),
+-- max_avg_movie as(
+--     select title from highest_movie_rated
+--     order by avg_rating desc,title asc
+--     limit 1
+-- ),
 output as(
     select * from highest_user_rating
     union all
-    select * from max_avg_movie
+    select * from highest_movie_rated
 )
 select name as results from output
 
