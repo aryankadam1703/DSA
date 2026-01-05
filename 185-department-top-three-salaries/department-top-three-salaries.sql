@@ -8,7 +8,7 @@ with highest_earner as(
     on e.departmentId=d.id    
 )
 select Department,Employee,Salary from highest_earner
-where rnk<=3
+where rnk<=3;
 
 
 
