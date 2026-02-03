@@ -1,5 +1,5 @@
 class Solution(object):
-    def romanToInt(self, s):
+    def romanToInt(self, s, i=0):
         """
         :type s: str
         :rtype: int
