@@ -4,12 +4,16 @@ class Solution(object):
         :type s: str
         :rtype: bool
         """
-        mapping={')':'(','}':'{',']':'['}
-        stack=[]
-        for char in s:
-            if char in mapping.values():
-                stack.append(char)
-            elif char in mapping:
-                if not stack or mapping[char] != stack.pop():
+        stack = []
+        parenthesis = {'}': '{', ']': '[', ')': '('}
+        
+        for ch in range(len(s)): 
+            
+            if s[ch] in parenthesis:  
+                if not stack or stack.pop() != parenthesis[s[ch]]:
                     return False
-        return not stack
+            elif s[ch] in parenthesis.values():
+                stack.append(s[ch])
+                
+        return not stack            
+                
