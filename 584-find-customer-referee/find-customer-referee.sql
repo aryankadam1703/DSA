@@ -1,5 +1,6 @@
 # Write your MySQL query statement below
-select C.name from Customer C
-left join Customer R
-on C.referee_id = R.id
-where C.referee_id !=2 or C.referee_id is null;
+Select c1.name from
+Customer c1
+Left Join Customer c2
+On c1.id = c2.id
+Where c1.referee_id != 2 OR c1.referee_id IS NULL
